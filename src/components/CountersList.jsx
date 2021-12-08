@@ -21,8 +21,8 @@ export default function CountersList() {
 
   const handleIncrement = (id, value) => {
     if (value >= 0) {
-      setCounters(
-        counters.map((counter) =>
+      setCounters((prevState) =>
+        prevState.map((counter) =>
           counter.id === id ? { ...counter, value: value + 1 } : counter
         )
       );
@@ -31,8 +31,8 @@ export default function CountersList() {
 
   const handleDecrement = (id, value) => {
     if (value) {
-      setCounters(
-        counters.map((counter) =>
+      setCounters((prevState) =>
+        prevState.map((counter) =>
           counter.id === id ? { ...counter, value: value - 1 } : counter
         )
       );
@@ -50,11 +50,9 @@ export default function CountersList() {
           onDecrement={handleDecrement}
         />
       ))}
-      {counters.length !== 0 && (
-        <button className="btn btn-primary btn-lg m-1" onClick={handleReset}>
-          Reset
-        </button>
-      )}
+      <button className="btn btn-primary btn-lg m-1" onClick={handleReset}>
+        Reset
+      </button>
     </>
   );
 }
